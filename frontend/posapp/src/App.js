@@ -8,9 +8,11 @@ import Admin from "./Pages/Admin";
 import CartList from "./Pages/CartList";
 // import './App.css';
 // import Login from "./Pages/Login";
+
 function App() {
   return (
     <>
+    
       <BrowserRouter>
       <NavBar/>
         <Routes>

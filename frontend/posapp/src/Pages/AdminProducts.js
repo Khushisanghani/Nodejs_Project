@@ -1,11 +1,13 @@
 import { Button, Container, Table } from "react-bootstrap";
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
-import { deleteProduct } from "../Services/Api";
-function AdminProducts({ products, refreshProducts}) {
-    const handleDelete = async (id) => {
-         await deleteProduct(id);
-         refreshProducts();
-    }
+import { deleteProduct } from "../Services/api";
+
+function AdminProducts({ products, refreshProducts, onEdit }) {
+  const handleDelete = async (id) => {
+    await deleteProduct(id);
+    refreshProducts();
+  };
+
   return (
     <Container className="mt-4">
       <h4 className="text-white mb-3">Product List</h4>
@@ -23,17 +25,26 @@ function AdminProducts({ products, refreshProducts}) {
         <tbody>
           {products && products.length > 0 ? (
             products.map((prod, index) => (
-              <tr key={index}>
+              <tr key={prod._id}>
                 <td>{index + 1}</td>
                 <td>{prod.name}</td>
                 <td>{prod.price}</td>
                 <td>{prod.stock}</td>
                 <td>{prod.category}</td>
                 <td>
-                  <Button variant="warning" size="sm" className="me-2">
+                  <Button
+                    variant="warning"
+                    size="sm"
+                    className="me-2"
+                    onClick={() => onEdit(prod)}
+                  >
                     <BsPencilSquare />
                   </Button>
-                  <Button variant="danger" size="sm" onClick={() => handleDelete(prod._id)}>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDelete(prod._id)}
+                  >
                     <BsTrash />
                   </Button>
                 </td>

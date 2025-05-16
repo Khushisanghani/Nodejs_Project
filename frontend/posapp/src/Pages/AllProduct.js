@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import { getProduct } from '../Services/Api'
+import { getProduct } from '../Services/api'
 
 const AllProduct = () => {
   const [products, setProducts] = useState([]);

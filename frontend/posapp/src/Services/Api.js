@@ -12,6 +12,13 @@ export const registerUser = async (Userdata) => {
         
     }
 }
+export const loginUser = async (loginData) => {
+  return await axios.post(`${API}/user/login`, loginData, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
 export const addProduct = async (add_p) => {
     try {
         return await axios.post(`${API}/products`,add_p , {
@@ -32,6 +39,14 @@ export const getProduct = async () => {
         console.log(error);
     }
 }
+export const updateProduct = async (id, updatedData) => {
+  return await axios.put(`${API}/products/${id}`, updatedData, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+
 export const deleteProduct = async (id) => {
     try {
         return await axios.delete(`${API}/products/${id}`)
