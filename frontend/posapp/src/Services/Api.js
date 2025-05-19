@@ -54,3 +54,12 @@ export const deleteProduct = async (id) => {
         console.log(error);
     }
 }
+
+
+export const createOrder = async (order) => {
+  return await axios.post(`${API}/order`, order, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};

@@ -4,10 +4,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useCartStore } from '../Store/cartStore';
 
 function NavBar() {
   const navigate = useNavigate();
-const cartCount = 1;
+const cart = useCartStore((state) => state.cart);
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0)
 const handleclick = () => {
   navigate('/cart');
 }
@@ -25,7 +27,7 @@ const handleclick = () => {
             <div className="d-flex align-items-center gap-3">
               <div style={{ position: 'relative', cursor: 'pointer' }}>
                 <FaShoppingCart size={24} color="white" onClick={() => handleclick()}/>
-                {cartCount > 0 && (
+                {totalCount > 0 && (
                   <Badge
                     bg="success"
                     pill
@@ -36,7 +38,7 @@ const handleclick = () => {
                       fontSize: '0.7rem',
                     }}
                   >
-                    {cartCount}
+                    {totalCount}
                   </Badge>
                 )}
               </div>
